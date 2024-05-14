@@ -15,8 +15,7 @@ class Service extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id');
-            // $table->foreignId('building_id');
+            $table->foreignId('field_id');
             $table->string('service_name');
             $table->text('service_description');
             $table->timestamps();
@@ -30,6 +29,6 @@ class Service extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('services');
     }
 }

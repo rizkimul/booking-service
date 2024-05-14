@@ -9,6 +9,10 @@ class Service extends Model
 {
     use HasFactory;
 
+    public function field(){
+        return $this->belongsTo(Field::class);
+    }
+
     public function rental(){
         return $this->hasMany(Rental::class);
     }

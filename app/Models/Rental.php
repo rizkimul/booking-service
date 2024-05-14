@@ -25,4 +25,8 @@ class Rental extends Model
     public function service(){
         return $this->belongsTo(Service::class);
     }
+
+    public function field(){
+        return $this->belongsTo(Field::class);
+    }
 }
