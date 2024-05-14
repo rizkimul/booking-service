@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
+
+    public function rental(){
+        return $this->hasMany(Rental::class);
+    }
 }
