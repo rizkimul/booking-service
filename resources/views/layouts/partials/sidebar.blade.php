@@ -42,7 +42,6 @@
                     <span>Data Jenis Pelayanan</span>
                 </a>
             </li>
-            </li>
             <li class="{{ Request::is('service*') ? 'active': '' }}">
                 <a class="nav-link" href="/service"><i class="fas fa-th-large"></i>
                     <span>Data Pelayanan</span>

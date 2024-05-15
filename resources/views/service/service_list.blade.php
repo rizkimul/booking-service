@@ -77,7 +77,7 @@
                                     <td>{{ $services->firstItem() + $loop->index }}</td>
                                     <td>{{ $service->service_name }}</td>
                                     <td>{{ $service->field->field_name }}</td>
-                                    <td>{{ $service->service_type->service_type_name }}</td>
+                                    <td>{{ $service->serviceType->service_type_name }}</td>
                                     <td>{{ $service['service_description'] }}</td>
                                     <td>
                                         @can('superadmin')

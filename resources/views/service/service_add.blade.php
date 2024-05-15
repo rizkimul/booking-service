@@ -33,7 +33,7 @@
                             name="serviceTypeId" value="{{ old('serviceTypeId') }}"
                             required autofocus>
                             @foreach($serviceTypes as $serviceType)
-                                <option value="{{ $serviceType->id }}">{{ $serviveType->service_type_name }}</option>
+                                <option value="{{ $serviceType->id }}">{{ $serviceType->service_type_name }}</option>
                                 @endforeach
                               </select>
                               @error('serviceTypeId')

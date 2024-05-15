@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Field;
 use App\Models\Service;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -14,7 +16,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('service.service_list', [
+            'title' => 'Data Pelayanan',
+            'services' => Service::with(['field','serviceType'])->paginate(5)
+        ]);
     }
 
     /**
@@ -24,7 +29,13 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('service.service_add', [
+            'title'     => 'Tambah Pelayanan',
+            'mainTitle' => 'Pelayanan',
+            'services' => Service::all(),
+            'fields'=> Field::all(),
+            'serviceTypes'=> ServiceType::all()
+        ]);
     }
 
     /**
@@ -35,7 +46,13 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service = new Service();
+        $service->service_name = $request->input('serviceName');
+        $service->service_type_id = $request->input('serviceTypeId');
+        $service->field_id = $request->input('fieldId');
+        $service->service_description = $request->input('serviceDescription');
+        $service->save();
+        return redirect('/service')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**
@@ -55,9 +72,15 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        return view('service.service_update', [
+            'title' => 'Update Pelayanan',
+            'mainTitle' => 'Pelayanan',
+            'data' => Service::find($id),
+            'fields'=> Field::all(),
+            'serviceTypes'=> ServiceType::all()
+        ]);
     }
 
     /**
@@ -67,9 +90,15 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request)
     {
-        //
+        $data = Service::find($request -> id);
+        $data->service_name = $request->serviceName;
+        $data->service_type_id = $request->serviceTypeId;
+        $data->field_id = $request->fieldId;
+        $data->fieldDescription = $request->field_description;
+        $data->save();
+        return redirect('/service')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**
@@ -78,8 +107,13 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        //
+        $data = Service::find($id);
+        $data->delete();
+        // return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
