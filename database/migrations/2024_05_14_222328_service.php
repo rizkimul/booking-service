@@ -16,6 +16,7 @@ class Service extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('field_id');
+            $table->foreignId('service_type_id');
             $table->string('service_name');
             $table->text('service_description');
             $table->timestamps();
