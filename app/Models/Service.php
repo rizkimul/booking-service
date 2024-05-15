@@ -16,4 +16,8 @@ class Service extends Model
     public function rental(){
         return $this->hasMany(Rental::class);
     }
+
+    public function serviceType(){
+        return $this->belongsTo(ServiceType::class);
+    }
 }
