@@ -65,9 +65,13 @@ class FieldController extends Controller
      * @param  \App\Models\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function edit(Field $field)
+    public function edit($id)
     {
-        //
+        return view('field.field_update', [
+            'title' => 'Update Bidang Pelayanan',
+            'mainTitle' => 'Bidang Pelayanan',
+            'data' => Field::find($id)
+        ]);
     }
 
     /**
@@ -77,9 +81,13 @@ class FieldController extends Controller
      * @param  \App\Models\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Field $field)
+    public function update(Request $request)
     {
-        //
+        $data = Field::find($request -> id);
+        $data->field_name = $request->fieldName;
+        $data->field_description = $request->fieldDescription;
+        $data->save();
+        return redirect('/field')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**
@@ -88,8 +96,14 @@ class FieldController extends Controller
      * @param  \App\Models\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Field $field)
+    public function destroy($id)
     {
-        //
+        $data = Field::find($id);
+        $data->delete();
+        // return redirect()->back()->with('statusDelete', 'Delete data sucessfully !');
+        return response()->json(
+            [
+              'success' => true
+            ]);
     }
 }
