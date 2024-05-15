@@ -25,11 +25,11 @@
                     <span>Data Jenis Ruangan</span>
                 </a>
             </li> --}}
-            <li class="{{ Request::is('ruangan*') ? 'active': '' }}">
+            {{-- <li class="{{ Request::is('ruangan*') ? 'active': '' }}">
                 <a class="nav-link" href="/ruangan"><i class="fas fa-th-large"></i>
                     <span>Data Ruangan</span>
                 </a>
-            </li>
+            </li> --}}
             </li>
             <li class="{{ Request::is('field*') ? 'active': '' }}">
                 <a class="nav-link" href="/field"><i class="fas fa-th-large"></i>
