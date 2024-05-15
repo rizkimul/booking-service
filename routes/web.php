@@ -16,7 +16,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardRentalController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\RentalController;
+use App\Http\Controllers\ServiceTypeController;
 use App\Models\Rental;
+use App\Models\ServiceType;
 use GuzzleHttp\Middleware;
 
 /*
@@ -37,6 +39,8 @@ Route::resource('gedung', GedungController::class)->middleware('mix');
 Route::resource('field', FieldController::class)->middleware('mix');
 
 Route::resource('roomtype', RoomTypeController::class)->middleware('mix');
+
+Route::resource('serviceType', ServiceTypeController::class)->middleware('mix');
 
 Route::resource('ruangan', RoomController::class)->middleware('mix');
 
