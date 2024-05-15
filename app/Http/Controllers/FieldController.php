@@ -12,9 +12,12 @@ class FieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('field.field_list', [
+            'title' => 'Data Bidang Pelayanan',
+            'fields' => Field::paginate(10)->withQueryString()
+            ])->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -24,7 +27,10 @@ class FieldController extends Controller
      */
     public function create()
     {
-        //
+        return view('field.field_add', [
+            'title'     => 'Tambah Bidang Pelayanan',
+            'mainTitle' => 'Bidang Pelayanan'
+        ]);
     }
 
     /**
@@ -35,7 +41,11 @@ class FieldController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $field = new Field();
+        $field->field_name = $request->input('fieldName');
+        $field->field_description = $request->input('fieldDescription');
+        $field->save();
+        return redirect('/field')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**
