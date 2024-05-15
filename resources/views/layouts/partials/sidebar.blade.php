@@ -30,6 +30,12 @@
                     <span>Data Ruangan</span>
                 </a>
             </li>
+            </li>
+            <li class="{{ Request::is('field*') ? 'active': '' }}">
+                <a class="nav-link" href="/field"><i class="fas fa-th-large"></i>
+                    <span>Data Bidang Pelayanan</span>
+                </a>
+            </li>
             <li class="menu-header">Data User</li>
             <li class="{{ Request::is('user*') ? 'active': '' }}">
                 <a href="/user" class="nav-link"><i class="far fa-user"></i>
