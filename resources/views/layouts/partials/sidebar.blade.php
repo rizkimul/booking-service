@@ -15,7 +15,7 @@
               </li>
               @can('mix')
               <li class="menu-header">Master Data</li>
-            <li class="{{ Request::is('gedung*') ? 'active': '' }}">
+            {{-- <li class="{{ Request::is('gedung*') ? 'active': '' }}">
                 <a class="nav-link" href="/gedung"><i class="fas fa-th-large"></i>
                     <span>Data Gedung</span>
                 </a>
@@ -24,7 +24,7 @@
                 <a class="nav-link" href="/roomtype"><i class="fas fa-th-large"></i>
                     <span>Data Jenis Ruangan</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="{{ Request::is('ruangan*') ? 'active': '' }}">
                 <a class="nav-link" href="/ruangan"><i class="fas fa-th-large"></i>
                     <span>Data Ruangan</span>
@@ -34,6 +34,18 @@
             <li class="{{ Request::is('field*') ? 'active': '' }}">
                 <a class="nav-link" href="/field"><i class="fas fa-th-large"></i>
                     <span>Data Bidang Pelayanan</span>
+                </a>
+            </li>
+            </li>
+            <li class="{{ Request::is('serviceType*') ? 'active': '' }}">
+                <a class="nav-link" href="/serviceType"><i class="fas fa-th-large"></i>
+                    <span>Data Jenis Pelayanan</span>
+                </a>
+            </li>
+            </li>
+            <li class="{{ Request::is('service*') ? 'active': '' }}">
+                <a class="nav-link" href="/service"><i class="fas fa-th-large"></i>
+                    <span>Data Pelayanan</span>
                 </a>
             </li>
             <li class="menu-header">Data User</li>

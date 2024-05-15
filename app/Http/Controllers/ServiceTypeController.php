@@ -12,9 +12,12 @@ class ServiceTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return view('serviceType.serviceType_list', [
+            'title' => 'Data Jenis Pelayanan',
+            'serviceTypes' => ServiceType::paginate(10)->withQueryString()
+            ])->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -24,7 +27,11 @@ class ServiceTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('serviceType.serviceType_add', [
+            'title'     => 'Tambah Jenis Pelayanan',
+            'mainTitle' => 'Jenis Pelayanan',
+            'roomtypes' => ServiceType::all()
+        ]);
     }
 
     /**
@@ -35,7 +42,11 @@ class ServiceTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $serviceType = new ServiceType();
+        $serviceType->service_type_name = $request->input('serviceTypeName');
+        $serviceType->service_type_description = $request->input('serviceTypeDescription');
+        $serviceType->save();
+        return redirect('/serviceType')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**
@@ -44,7 +55,7 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\ServiceType  $serviceType
      * @return \Illuminate\Http\Response
      */
-    public function show(ServiceType $serviceType)
+    public function show()
     {
         //
     }
@@ -55,9 +66,13 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\ServiceType  $serviceType
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceType $serviceType)
+    public function edit($id)
     {
-        //
+        return view('serviceType.serviceType_update', [
+            'title' => 'Update Jenis Pelayanan',
+            'mainTitle' => 'Jenis Pelayanan',
+            'data' => ServiceType::find($id)
+        ]);
     }
 
     /**
@@ -67,9 +82,13 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\ServiceType  $serviceType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServiceType $serviceType)
+    public function update(Request $request)
     {
-        //
+        $data = ServiceType::find($request -> id);
+        $data->service_type_name = $request->serviceTypeName;
+        $data->service_type_description = $request->serviceTypeDescription;
+        $data->save();
+        return redirect('/serviceType')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**
@@ -78,8 +97,13 @@ class ServiceTypeController extends Controller
      * @param  \App\Models\ServiceType  $serviceType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceType $serviceType)
+    public function destroy($id)
     {
-        //
+        $data = ServiceType::find($id);
+        $data->delete();
+        // return redirect('/roomtype')->with('statusDelete', 'Delete data sucessfully !');
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

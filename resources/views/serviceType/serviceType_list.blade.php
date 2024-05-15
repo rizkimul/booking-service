@@ -53,7 +53,7 @@
                 <div class="card">
                     @can('superadmin')
                     <div class="card-header">
-                        <a href="/roomtype/create" class="btn btn-primary">
+                        <a href="/serviceType/create" class="btn btn-primary">
                             Tambah Jenis Pelayanan
                         </a>
                     </div>
@@ -72,8 +72,8 @@
                                 @foreach ($serviceTypes as $serviceType )
                                   <tr>
                                       <td>{{ ++$i }}</td>
-                                      <td>{{ $serviceType['serviceTypeName'] }}</td>
-                                      <td>{{ $serviceType['serviceTypeDescription'] }}</td>
+                                      <td>{{ $serviceType['service_type_name'] }}</td>
+                                      <td>{{ $serviceType['service_type_description'] }}</td>
                                       <td>
                                         @can('superadmin')
                                         <a href="/serviceType/{{ $serviceType->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
