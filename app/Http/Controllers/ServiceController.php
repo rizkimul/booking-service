@@ -52,7 +52,7 @@ class ServiceController extends Controller
         $service->field_id = $request->input('fieldId');
         $service->service_description = $request->input('serviceDescription');
         $service->save();
-        return redirect('/service')->with('statusAdd', 'Added data sucessfully !');
+        return redirect('/services')->with('statusAdd', 'Added data sucessfully !');
     }
 
     /**
@@ -98,7 +98,7 @@ class ServiceController extends Controller
         $data->field_id = $request->fieldId;
         $data->fieldDescription = $request->field_description;
         $data->save();
-        return redirect('/service')->with('statusUpdate', 'Update data sucessfully');
+        return redirect('/services')->with('statusUpdate', 'Update data sucessfully');
     }
 
     /**

@@ -11,7 +11,7 @@
     <div class="section-body">
         <h2 class="section-title">{{ $title }}</h2>
 
-        <form action="/service/{{ $data->id }}" method="POST">
+        <form action="/services/{{ $data->id }}" method="POST">
             @method('put')
             @csrf
             <div class="card">

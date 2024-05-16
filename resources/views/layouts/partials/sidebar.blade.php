@@ -30,20 +30,19 @@
                     <span>Data Ruangan</span>
                 </a>
             </li> --}}
-            </li>
+            {{-- </li> --}}
             <li class="{{ Request::is('field*') ? 'active': '' }}">
                 <a class="nav-link" href="/field"><i class="fas fa-th-large"></i>
                     <span>Data Bidang Pelayanan</span>
                 </a>
-            </li>
             </li>
             <li class="{{ Request::is('serviceType*') ? 'active': '' }}">
                 <a class="nav-link" href="/serviceType"><i class="fas fa-th-large"></i>
                     <span>Data Jenis Pelayanan</span>
                 </a>
             </li>
-            <li class="{{ Request::is('service*') ? 'active': '' }}">
-                <a class="nav-link" href="/service"><i class="fas fa-th-large"></i>
+            <li class="{{ Request::is('services*') ? 'active': '' }}">
+                <a class="nav-link" href="/services"><i class="fas fa-th-large"></i>
                     <span>Data Pelayanan</span>
                 </a>
             </li>

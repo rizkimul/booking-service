@@ -54,7 +54,7 @@
               <div class="card">
                   @can('superadmin')
                   <div class="card-header">
-                      <a href="/service/create" class="btn btn-primary">
+                      <a href="/services/create" class="btn btn-primary">
                         Tambah Pelayanan
                     </a>
                 </div>
@@ -81,7 +81,7 @@
                                     <td>{{ $service['service_description'] }}</td>
                                     <td>
                                         @can('superadmin')
-                                        <a href="/service/{{ $service->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="/services/{{ $service->id }}/edit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a>
                                         <a href=# class="btn btn-danger service-delete" data-id="{{ $service->id }}"><i class="fas fa-trash"></i></a>
                                         @endcan
                                     </td>
@@ -118,7 +118,7 @@
                     });
                     $.ajax({
                         type: "DELETE",
-                        url: "/service/"+dataID+"",
+                        url: "/services/"+dataID+"",
                         success: function(response){
                             Swal.fire({
                                 position: 'top-end',

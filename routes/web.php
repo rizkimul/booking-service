@@ -45,7 +45,7 @@ Route::resource('serviceType', ServiceTypeController::class)->middleware('mix');
 
 Route::resource('ruangan', RoomController::class)->middleware('mix');
 
-Route::resource('service', ServiceController::class)->middleware('mix');
+Route::resource('services', ServiceController::class)->middleware('mix');
 
 Route::resource('user', UserController::class)->middleware('mix');
 
