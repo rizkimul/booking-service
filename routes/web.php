@@ -51,9 +51,13 @@ Route::resource('user', UserController::class)->middleware('mix');
 
 Route::resource('rental', DashboardRentalController::class)->middleware('mix');
 Route::resource('rents', RentalController::class)->middleware('user');
-Route::get('getRoom/{id}', function ($id) {
-    $room = App\Models\Room::where('building_id',$id)->get();
-    return response()->json($room);
+// Route::get('getRoom/{id}', function ($id) {
+//     $room = App\Models\Room::where('building_id',$id)->get();
+//     return response()->json($room);
+// });
+Route::get('getService/{id}', function ($id) {
+    $service = App\Models\Service::where('field_id',$id)->get();
+    return response()->json($service);
 });
 
 Route::get('/laporan', [LaporanController::class, 'read']);

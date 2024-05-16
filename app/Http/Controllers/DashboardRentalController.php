@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Rental;
 use App\Models\Building;
+use App\Models\Field;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\RentNotification;
@@ -39,7 +40,7 @@ class DashboardRentalController extends Controller
         return view('peminjaman.peminjaman_add', [
             'title'     => 'Pinjam Ruangan',
             'mainTitle' => 'Peminjaman',
-            'buildings' => Building::all(),
+            'fields' => Field::all(),
         ]);
     }
 
