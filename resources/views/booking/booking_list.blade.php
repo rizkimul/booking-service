@@ -7,7 +7,7 @@
         <h1>List Booking</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/#">{{ $title }}</a></div>
-            <div class="breadcrumb-item">List Peminjaman</div>
+            <div class="breadcrumb-item">List Booking</div>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
                 <div class="card">
                     <div class="card-header">
                         <a href="/booking/create" class="btn btn-primary">
-                            Pinjam Ruangan
+                            Booking Pelayanan
                         </a>
                     </div>
                     <div class="card-body p-0">
@@ -61,15 +61,12 @@
                             <table class="table table-striped table-md text-center">
                                 <tr>
                                     <th>No</th>
-                                    {{-- <th>Gedung</th> --}}
-                                    <th>Ruangan</th>
-                                    <th>Peminjam</th>
-                                    <th>Jenis Pinjaman</th>
-                                    <th>Tgl awal pinjam</th>
-                                    <th>Tgl akhir pinjam</th>
-                                    <th>Tujuan Peminjaman</th>
+                                    <th>Pelayanan</th>
+                                    <th>User</th>
+                                    <th>Tanggal Booking</th>
+                                    <th>Tujuan Booking</th>
                                     <th>Status</th>
-                                    <th>Ket Peminjaman</th>
+                                    <th>Ket Booking</th>
                                     @can('admin')
                                     <th>Action</th>
                                     @endcan
@@ -77,13 +74,10 @@
                                 @foreach ($rents as $rent)
                                 <tr>
                                     <td>{{ $rents->firstItem() + $loop->index }}</td>
-                                    {{-- <td>{{ $rent->building->buildingname }}</td> --}}
-                                    <td>{{ $rent->room->roomname }}</td>
+                                    <td>{{ $rent->service->service_name }}</td>
                                     <td>{{ $rent->user->username }}</td>
-                                    <td>{{ $rent->jenis_pinjam }}</td>
-                                    <td>{{ $rent->start }}</td>
-                                    <td>{{ $rent->end }}</td>
-                                    <td>{{ $rent->title }}</td>
+                                    <td>{{ $rent->book_date }}</td>
+                                    <td>{{ $rent->description }}</td>
                                     @if ($rent->status == 'Accept')
                                     <td class="badge badge-success mt-2">{{ $rent->status }}</td>
                                     @elseif($rent->status == 'Reject')
@@ -94,19 +88,6 @@
                                     <td>{{ $rent->keterangan }}</td>
                                     @can('admin')
                                     <td>
-                                        {{-- <form action="/rental/{{ $rent->id }}", method="post" class="d-inline">
-                                            @method('put')
-                                            @csrf
-                                            @if ($rent->status == 'Accept')
-                                                <button type="submit" class="btn btn-secondary" disabled><i
-                                                class="fas fa-check"></i></button>
-                                            @else
-                                                <button type="submit" class="btn btn-success"><i
-                                                class="fas fa-check"></i></button>
-                                            @endif --}}
-                                            {{-- <a href="/rental/{{ $rent->id }}" class="btn btn-success"><i
-                                                class="fas fa-check"></i></a> --}}
-                                            {{-- </form> --}}
                                             @if ($rent->status == 'Accept')
                                             <a href=# class="btn btn-secondary approve disabled" data-id="{{ $rent->id }}"><i class="fas fa-check"></i></a>
                                             <a href=# class="btn btn-danger reject disabled" data-id="{{ $rent->id }}"><i class="fas fa-times"></i></a>
@@ -117,7 +98,7 @@
                                             <a href=# class="btn btn-success approve" data-id="{{ $rent->id }}"><i class="fas fa-check"></i></a>
                                             <a href=# class="btn btn-danger reject" data-id="{{ $rent->id }}"><i class="fas fa-times"></i></a>
                                             @endif
-                                        </td>
+                                        {{-- </td> --}}
                                         @endcan
                                                 {{-- <a href={{ "/ruanganDelete/" .$rent['id'] }} class="btn btn-danger trigger--fire-modal-7"
                                             onclick="return confirm('Are you sure want to delete ?')"><i

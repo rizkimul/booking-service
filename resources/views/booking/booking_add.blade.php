@@ -53,6 +53,17 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="form-group col-md-8">
+                            <label for="description">Tujuan Booking</label>
+                            <input type="text" class="form-control @error('description') is-invalid @enderror"
+                                name="description" id="description" placeholder="Keterangan Booking" value="{{ old('description') }}"
+                                required>
+                            @error('description')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>
