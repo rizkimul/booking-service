@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -50,6 +51,8 @@ Route::resource('services', ServiceController::class)->middleware('mix');
 Route::resource('user', UserController::class)->middleware('mix');
 
 Route::resource('rental', DashboardRentalController::class)->middleware('mix');
+
+Route::resource('booking', BookingController::class)->middleware('mix');
 Route::resource('rents', RentalController::class)->middleware('user');
 // Route::get('getRoom/{id}', function ($id) {
 //     $room = App\Models\Room::where('building_id',$id)->get();

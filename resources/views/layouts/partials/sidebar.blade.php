@@ -55,8 +55,8 @@
             @endcan
             @can('mix')
             <li class="menu-header">Booking</li>
-            <li class="{{ Request::is('rental*') ? 'active': '' }}">
-                <a href="/rental" class="nav-link"><i class="fas fa-pencil-ruler"></i>
+            <li class="{{ Request::is('booking*') ? 'active': '' }}">
+                <a href="/booking" class="nav-link"><i class="fas fa-pencil-ruler"></i>
                     <span>Booking</span>
                 </a>
             </li>
