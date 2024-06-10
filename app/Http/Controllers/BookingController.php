@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Field;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class BookingController extends Controller
 {
@@ -43,7 +46,19 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $users = User::where('usertype', 'Admin')->get();
+        $rent = new Booking();
+        $rent->field_id = $request->input('fieldId');
+        $rent->service_id = $request->input('serviceId');
+        $rent->user_id = auth()->user()->id;
+        $rent->book_date = $request->input('bookDate');
+        $rent->status = 'Pending';
+        $rent->keterangan = 'Pending';
+        $rent->description = $request->input('description');
+        $rent->save();
+        // Notification::send($users, new RentNotification($rent));
+        return redirect('/booking');
     }
 
     /**
