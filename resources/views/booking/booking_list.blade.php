@@ -52,7 +52,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/rental/create" class="btn btn-primary">
+                        <a href="/booking/create" class="btn btn-primary">
                             Pinjam Ruangan
                         </a>
                     </div>
