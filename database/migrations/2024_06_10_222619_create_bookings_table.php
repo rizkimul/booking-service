@@ -19,6 +19,7 @@ class CreateBookingsTable extends Migration
             $table->foreignId('service_id');
             $table->foreignId('user_id');
             $table->dateTime('book_date');
+            $table->string('status');
             $table->string('description');
             $table->string('keterangan');
             $table->timestamps();
