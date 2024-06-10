@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">PinjamRuang</a>
+            <a href="index.html">Booking Service</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html"></a>
@@ -54,10 +54,10 @@
             </li>
             @endcan
             @can('mix')
-            <li class="menu-header">Peminjaman</li>
+            <li class="menu-header">Booking</li>
             <li class="{{ Request::is('rental*') ? 'active': '' }}">
                 <a href="/rental" class="nav-link"><i class="fas fa-pencil-ruler"></i>
-                    <span>Peminjaman</span>
+                    <span>Booking</span>
                 </a>
             </li>
             @endcan
