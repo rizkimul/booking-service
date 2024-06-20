@@ -96,7 +96,7 @@ class ServiceController extends Controller
         $data->service_name = $request->serviceName;
         $data->service_type_id = $request->serviceTypeId;
         $data->field_id = $request->fieldId;
-        $data->fieldDescription = $request->field_description;
+        $data->service_description = $request->serviceDescription;
         $data->save();
         return redirect('/services')->with('statusUpdate', 'Update data sucessfully');
     }
