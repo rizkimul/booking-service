@@ -58,10 +58,6 @@ class BookingController extends Controller
         $rent->keterangan = 'Pending';
         $rent->description = $request->input('description');
         $rent->save();
-        //dikirim disini
-        //kalo mau dikirim ke user?
-        //paling bikin lagi satu proses dari sisi admin untuk ngrim email dan notif ke user
-        //udah ketemu ada di dashboard rental controller
         Notification::send($users, new EmailNotification($rent));
         return redirect('/booking');
     }
