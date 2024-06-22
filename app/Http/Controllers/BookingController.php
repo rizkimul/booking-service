@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Field;
 use App\Models\User;
+use App\Notifications\EmailNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -46,7 +47,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //email TO nya dari sini
         $users = User::where('usertype', 'Admin')->get();
         $rent = new Booking();
         $rent->field_id = $request->input('fieldId');
@@ -57,7 +58,11 @@ class BookingController extends Controller
         $rent->keterangan = 'Pending';
         $rent->description = $request->input('description');
         $rent->save();
-        // Notification::send($users, new RentNotification($rent));
+        //dikirim disini
+        //kalo mau dikirim ke user?
+        //paling bikin lagi satu proses dari sisi admin untuk ngrim email dan notif ke user
+        //udah ketemu ada di dashboard rental controller
+        Notification::send($users, new EmailNotification($rent));
         return redirect('/booking');
     }
 
@@ -78,9 +83,14 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booking $booking)
+    public function edit(Booking $booking, Request $request)
     {
-        //
+        // dd($request->input('status'));
+        $data = Booking::find($booking -> id);
+        // dd($data);
+        $data->keterangan = $request->input('message');
+        $data->save();
+        return redirect('/booking');
     }
 
     /**
@@ -92,7 +102,17 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        $data = Booking::find($booking->id);
+        $user = User::find($data->user_id);
+        $data->status = $request->input('status');
+        $data->keterangan = $request->input('message');
+        $data->save();
+        Notification::send($user, new EmailNotification($data));
+        return response()->json(
+            [
+              'success' => true,
+              'status' => 200
+            ]);
     }
 
     /**
