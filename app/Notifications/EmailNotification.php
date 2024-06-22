@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class EmailNotification extends Notification
 {
     use Queueable;
+    protected $project;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($project)
     {
-        //
+        $this->project = $project;
     }
 
     /**
@@ -29,7 +30,7 @@ class EmailNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -55,7 +56,9 @@ class EmailNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'service' => $this->project->service->service_name,
+            'user' => $this->project->user->username,
+            'message' => 'menunggu konfirmasi'
         ];
     }
 }
