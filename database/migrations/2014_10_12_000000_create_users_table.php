@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('usertype');
             $table->string('instansi');
             $table->string('fullname');
+            $table->string('email');
+            $table->string('phone_number');
             $table->rememberToken();
             $table->timestamps();
         });

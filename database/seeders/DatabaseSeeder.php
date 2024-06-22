@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             'usertype' => 'Admin',
             'instansi' => 'Fakultas Teknik',
             'fullname' => 'Admin',
+            'email' => 'admin@mail.com',
+            'phone_number' => '089628334185',
             'remember_token' => Str::random(10),
         ]);
         \App\Models\User::create([
@@ -33,6 +35,8 @@ class DatabaseSeeder extends Seeder
             'usertype' => 'SuperAdmin',
             'instansi' => 'Fakultas Teknik',
             'fullname' => 'SuperAdmin',
+            'email' => 'superadmin@mail.com',
+            'phone_number' => '089628334185',
             'remember_token' => Str::random(10),
         ]);
     }

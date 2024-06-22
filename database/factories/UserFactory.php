@@ -21,7 +21,7 @@ class UserFactory extends Factory
             'instansi' => 'Fakultas Teknik',
             'fullname' => $this->faker->lastName(),
             'remember_token' => Str::random(10),
-            // 'email' => $this->faker->unique()->safeEmail(),
+            'email' => $this->faker->unique()->safeEmail(),
             // 'email_verified_at' => now(),
         ];
     }
