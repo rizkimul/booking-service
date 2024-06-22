@@ -11,7 +11,7 @@
                 <i class="fas fa-envelope"></i>
             </div>
             <div class="dropdown-item-desc">
-               <strong> {{ $notification->data['ruangan'] }} Dengan Peminjam {{ $notification->data['user'] }} Memiliki Status {{ $notification->data['message'] }} </strong>
+               <strong> {{ $notification->data['service'] }} Dengan Pemohon {{ $notification->data['user'] }} Memiliki Status {{ $notification->data['message'] }} </strong>
             </div>
         </div>
         @endforeach
@@ -21,7 +21,7 @@
                 <i class="fas fa-envelope-open"></i>
             </div>
             <div class="dropdown-item-desc">
-               {{ $notif->data['ruangan'] }} Dengan Peminjam {{ $notif->data['user'] }} Memiliki Status {{ $notif->data['message'] }}
+               {{ $notif->data['service'] }} Dengan Pemohon {{ $notif->data['user'] }} Memiliki Status {{ $notif->data['message'] }}
             </div>
         </div>
         @endforeach
