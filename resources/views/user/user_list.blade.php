@@ -66,6 +66,8 @@
                                     <th>Usertype</th>
                                     <th>Instansi</th>
                                     <th>Fullname</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
                                     <th>Action</th>
                                 </tr>
                                 @foreach ($users as $user )
@@ -75,6 +77,8 @@
                                     <td>{{ $user['usertype'] }}</td>
                                     <td>{{ $user['instansi'] }}</td>
                                     <td>{{ $user['fullname'] }}</td>
+                                    <td>{{ $user['email'] }}</td>
+                                    <td>{{ $user['phone_number'] }}</td>
                                     <td><a href="/user/{{ $user->id }}/edit" class="btn btn-warning"><i
                                                 class="fas fa-pencil-alt"></i></a>
                                         <a href=# class="btn btn-danger user-delete" data-id="{{ $user->id }}"
