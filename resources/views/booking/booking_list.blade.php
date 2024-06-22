@@ -142,7 +142,7 @@
                 });
                 $.ajax({
                     type: "PUT",
-                    url: "/rental/"+dataID+"",
+                    url: "/booking/"+dataID+"",
                     data: {
                         status: status,
                         message: keterangan.value
@@ -168,7 +168,7 @@
                 });
                 $.ajax({
                     type: "PUT",
-                    url: "/rental/"+dataID+"",
+                    url: "/booking/"+dataID+"",
                     data: {
                         status: status,
                         message: keterangan
