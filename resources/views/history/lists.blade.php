@@ -3,10 +3,10 @@
 @section("container")
 <section class="section">
     <div class="section-header">
-        <h1>Riwayat Booking</h1>
+        <h1>List Peminjaman</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/#">{{ $title }}</a></div>
-            <div class="breadcrumb-item">Riwayat Booking</div>
+            <div class="breadcrumb-item">List Peminjaman</div>
         </div>
     </div>
 
@@ -52,8 +52,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/books/create" class="btn btn-primary">
-                            Booking Pelayanan
+                        <a href="/rental/create" class="btn btn-primary">
+                            Pinjam Ruangan
                         </a>
                     </div>
                     <div class="card-body p-0">
@@ -61,18 +61,23 @@
                             <table class="table table-striped table-md text-center">
                                 <tr>
                                     <th>No</th>
-                                    <th>Pelayanan</th>
+                                    <th>Nama Gedung</th>
+                                    <th>Nama Ruangan</th>
+                                    <th>Jenis Pinjaman</th>
                                     {{-- <th>Nama Peminjam</th> --}}
-                                    <th>Tanggal Booking</th>
+                                    <th>Tgl awal pinjam</th>
+                                    <th>Tgl akhir pinjam</th>
                                     <th>Status</th>
-                                    <th>Ket Booking</th>
+                                    <th>Ket Peminjaman</th>
                                 </tr>
                                 @foreach ($rents as $rent)
                                 <tr>
                                     <td>{{ $rents->firstItem() + $loop->index }}</td>
-                                    <td>{{ $rent->service->service_name }}</td>
-                                    <td>{{ $rent->book_date }}</td>
-                                    <td>{{ $rent->description }}</td>
+                                    <td>{{ $rent->building->buildingname }}</td>
+                                    <td>{{ $rent->room->roomname }}</td>
+                                    <td>{{ $rent->jenis_pinjam }}</td>
+                                    <td>{{ $rent->start }}</td>
+                                    <td>{{ $rent->end }}</td>
                                     @if ($rent->status == 'Accept')
                                     <td class="badge badge-success mt-2">{{ $rent->status }}</td>
                                     @elseif($rent->status == 'Reject')

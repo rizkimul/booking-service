@@ -67,9 +67,9 @@
                     <span>Peminjaman</span>
                 </a>
             </li>
-            <li class="{{ Request::is('rents') ? 'active': '' }}">
-                <a href="/rents" class="nav-link"><i class="fas fa-pencil-ruler"></i>
-                    <span>Riwayat Peminjaman</span>
+            <li class="{{ Request::is('books') ? 'active': '' }}">
+                <a href="/books" class="nav-link"><i class="fas fa-pencil-ruler"></i>
+                    <span>Riwayat Booking</span>
                 </a>
             </li>
             @endcan

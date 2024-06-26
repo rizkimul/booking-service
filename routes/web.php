@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\UserBookingController;
 use App\Models\RoomType;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardRentalController;
@@ -53,7 +54,7 @@ Route::resource('user', UserController::class)->middleware('mix');
 Route::resource('rental', DashboardRentalController::class)->middleware('mix');
 
 Route::resource('booking', BookingController::class)->middleware('mix');
-Route::resource('rents', RentalController::class)->middleware('user');
+Route::resource('books', UserBookingController::class)->middleware('user');
 // Route::get('getRoom/{id}', function ($id) {
 //     $room = App\Models\Room::where('building_id',$id)->get();
 //     return response()->json($room);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Building;
+use App\Models\Field;
 use App\Models\Rental;
 use App\Models\Room;
 use App\Models\User;
@@ -15,13 +17,13 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Rental::where('status', 'Accept')->get()->groupBy(function($data){
-            return Carbon::parse($data->start)->format('M');
+        $data = Booking::where('status', 'Accept')->get()->groupBy(function($data){
+            return Carbon::parse($data->book_date)->format('M');
         });
-        $ruangan = Rental::where('status', 'Accept')->with('room')->get()->groupBy(function($ruangan){
-            return $ruangan->room->roomname;
+        $service = Booking::where('status', 'Accept')->with('service')->get()->groupBy(function($service){
+            return $service->service->service_name;
         });
-        $user = Rental::where('status', 'Accept')->with('user')->get()->groupBy(function($user){
+        $user = Booking::where('status', 'Accept')->with('user')->get()->groupBy(function($user){
             return $user->user->instansi;
         });
 
@@ -34,7 +36,7 @@ class DashboardController extends Controller
 
         $labelNama=[];
         $jumlah=[];
-        foreach($ruangan as $nama => $nilai){
+        foreach($service as $nama => $nilai){
             $labelNama[]=$nama;
             $jumlah[]=count($nilai);
         }
@@ -45,18 +47,18 @@ class DashboardController extends Controller
             $namaUser[]=$userName;
             $jumlahPinjam[]=count($value);
         }
-        $tanggal = Rental::select('start', 'end', 'title')->where('status', 'Accept')->get();
+        $tanggal = Booking::select('book_date', 'description')->where('status', 'Accept')->get();
         
         return view('gedung.dashboard', [
             'title' => 'Dashboard',
             'user' => User::count(),
-            'gedung' => Building::count(),
-            'ruangan' => Room::count(),
-            'pinjam' => Rental::where('status', 'accept')->count(),
+            'field' => Field::count(),
+            'services' => Booking::count(),
+            'booking' => Booking::where('status', 'accept')->count(),
             'data' => $data,
             'months' => $months,
             'monthCount' => $monthCount,
-            'ruang' => $ruangan,
+            'service' => $service,
             'nama' => $labelNama,
             'jumlah' => $jumlah,
             'pengguna' => $user,
@@ -71,7 +73,7 @@ class DashboardController extends Controller
 
     public function create(Request $request){
         if($request->ajax()){
-            $tanggal = Rental::whereDate('start', '2022-01-13')->whereDate('end', '2022-01-14')->get(['id', 'status', 'start', 'end']);
+            $tanggal = Booking::whereDate('start', '2024-06-26')->whereDate('end', '2024-06-26')->get(['id', 'status', 'book_date']);
             return response()->json($tanggal);
         }
     }

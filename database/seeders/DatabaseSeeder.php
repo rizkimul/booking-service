@@ -23,20 +23,30 @@ class DatabaseSeeder extends Seeder
             'username' => 'Admin',
             'password' => Hash::make('Admin'),
             'usertype' => 'Admin',
-            'instansi' => 'Fakultas Teknik',
+            'instansi' => 'Humas',
             'fullname' => 'Admin',
-            'email' => 'admin@mail.com',
-            'phone_number' => '089628334185',
+            'email' => 'admins@yapmail.com',
+            'phone_number' => '081237017320',
             'remember_token' => Str::random(10),
         ]);
         \App\Models\User::create([
             'username' => 'SuperAdmin',
             'password' => Hash::make('SuperAdmin'),
             'usertype' => 'SuperAdmin',
-            'instansi' => 'Fakultas Teknik',
+            'instansi' => 'Humas',
             'fullname' => 'SuperAdmin',
-            'email' => 'superadmin@mail.com',
-            'phone_number' => '089628334185',
+            'email' => 'supersadmins@yapmail.com',
+            'phone_number' => '081237017320',
+            'remember_token' => Str::random(10),
+        ]);
+        \App\Models\User::create([
+            'username' => 'User',
+            'password' => Hash::make('User'),
+            'usertype' => 'User',
+            'instansi' => 'Warga',
+            'fullname' => 'User',
+            'email' => 'users@yapmail.com',
+            'phone_number' => '081237017320',
             'remember_token' => Str::random(10),
         ]);
     }

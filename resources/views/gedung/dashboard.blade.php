@@ -36,7 +36,7 @@
                 <h4>Total Gedung</h4>
               </div>
               <div class="card-body">
-                {{ $gedung }}
+                {{ $field }}
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@
                 <h4>Total Ruangan</h4>
               </div>
               <div class="card-body">
-                {{ $ruangan }}
+                {{ $services }}
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@
                 <h4>Total Ruangan Yang Dipinjam</h4>
               </div>
               <div class="card-body">
-                {{ $pinjam }}
+                {{ $booking }}
               </div>
             </div>
           </div>
@@ -100,6 +100,35 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
+        // var Events = {!! json_encode($tanggal) !!};
+        // console.log(Events)
+        var rawEvents = {!! json_encode($tanggal) !!};
+        
+        // Transform the raw event data to the format expected by FullCalendar
+        var events = rawEvents.map(event => {
+            // Check for the structure of the event data and transform accordingly
+            if (event.start && event.end && event.title) {
+                // Already in the correct format
+                return {
+                    start: event.start,
+                    end: event.end,
+                    title: event.title
+                };
+            } else if (event.book_date && event.description) {
+                // Transform to the correct format
+                return {
+                    start: event.book_date,
+                    end: event.book_date, // or you can calculate an appropriate end date
+                    title: event.description
+                };
+            } else {
+                // Handle other cases or throw an error
+                console.error('Unknown event format:', event);
+                return null;
+            }
+        }).filter(event => event !== null); // Remove any null values from the transformation
+
+        console.log('Transformed Events data:', events);
         var calendar = new FullCalendar.Calendar(calendarEl, {
           selectable: true,
           height: 900,
@@ -108,9 +137,9 @@
           // dateClick: function(info) {
           //   alert('clicked ' + info.dateStr);
           // },
-          select: function(startDate){
-            console.log(startDate);
-          },
+          // select: function(startDate){
+          //   console.log(startDate);
+          // },
           // start: '', // will normally be on the left. if RTL, will be on the right
           // center: '',
           // end: '' // will normally be on the right. if RTL, will be on the left
@@ -119,7 +148,7 @@
             center: 'title',
             right: 'today prevYear,prev,next,nextYear'
           },
-          events: {!! json_encode($tanggal) !!},
+          events: events,
           eventTimeFormat: { // like '14:30:00'
             hour: '2-digit',
             minute: '2-digit',
