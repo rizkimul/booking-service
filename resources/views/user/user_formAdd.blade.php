@@ -57,6 +57,28 @@
                             @enderror
                         </div>
                         <div class="form-group col-md-12">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                name="email" id="email" placeholder="Email" value="{{ old('email') }}"
+                                required>
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="phoneNumber">No. Telp</label>
+                            <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror"
+                                name="phoneNumber" id="phoneNumber" placeholder="No. Telp" value="{{ old('phoneNumber') }}"
+                                required>
+                            @error('phoneNumber')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
                             <label for="fullname">Fullname</label>
                             <input type="text" class="form-control @error('fullname') is-invalid @enderror"
                                 name="fullname" id="fullname" placeholder="Fullname" value="{{ old('fullname') }}"

@@ -47,12 +47,34 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="instansi">Instansi</label>
                             <input type="text" class="form-control" name="instansi" id="instansi"
                                 placeholder="Instansi @error('instansi') is-invalid @enderror" required
                                 value="{{ old('instansi', $data->instansi) }}">
                             @error('instansi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                name="email" id="email" placeholder="Email" value="{{ old('email', $data->email) }}"
+                                required>
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="phoneNumber">No. Telp</label>
+                            <input type="text" class="form-control @error('phoneNumber') is-invalid @enderror"
+                                name="phoneNumber" id="phoneNumber" placeholder="No. Telp" value="{{ old('phoneNumber', $data->phone_number) }}"
+                                required>
+                            @error('phoneNumber')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

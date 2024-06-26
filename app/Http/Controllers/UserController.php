@@ -33,6 +33,8 @@ class UserController extends Controller
         $user->usertype = $request->input('usertype');
         $user->instansi = $request->input('instansi');
         $user->fullname = $request->input('fullname');
+        $user->email = $request->input('email');
+        $user->phone_number = $request->input('phoneNumber');
         $user->save();
         return redirect('/user')->with('statusAdd', 'Added data sucessfully !');
     }
@@ -54,6 +56,8 @@ class UserController extends Controller
         $data->fullname = $request->fullname;
         $data->usertype = $request->usertype;
         $data->instansi = $request->instansi;
+        $data->email = $request->email;
+        $data->phone_number = $request->phone_number;
         $data->save();
         return redirect('/user')->with('statusUpdate', 'Update data sucessfully');
     }
