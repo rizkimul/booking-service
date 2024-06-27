@@ -63,8 +63,8 @@
             @endcan
             @can('user')
             <li class="{{ Request::is('rents/create') ? 'active': '' }}">
-                <a href="/rents/create" class="nav-link"><i class="fas fa-pencil-ruler"></i>
-                    <span>Peminjaman</span>
+                <a href="/books/create" class="nav-link"><i class="fas fa-pencil-ruler"></i>
+                    <span>Booking</span>
                 </a>
             </li>
             <li class="{{ Request::is('books') ? 'active': '' }}">

@@ -52,9 +52,9 @@
                 </button>
             </div>
         </form>
-        {{-- <div class="mt-5 text-muted text-center">
+        <div class="mt-5 text-muted text-center">
             Not registered? <a href="/register">Register Now</a>
-        </div> --}}
+        </div>
 
     </div>
 </div>

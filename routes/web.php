@@ -17,6 +17,7 @@ use App\Models\RoomType;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardRentalController;
 use App\Http\Controllers\FieldController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceTypeController;
@@ -72,8 +73,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'auth']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
+Route::resource('/register', RegistrationController::class)->middleware('guest');
 
 Route::get('/markasread', function(){
     auth()->user()->unreadNotifications->markAsRead();
