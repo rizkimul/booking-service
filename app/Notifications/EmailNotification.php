@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,16 +11,16 @@ use Illuminate\Notifications\Notification;
 class EmailNotification extends Notification
 {
     use Queueable;
-    protected $project;
+    protected $booking;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($project)
+    public function __construct($booking)
     {
-        $this->project = $project;
+        $this->booking = $booking;
     }
 
     /**
@@ -40,12 +41,19 @@ class EmailNotification extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
+{
+    return (new MailMessage)
+                ->subject('New Booking Created')
+                ->line('A new booking has been created by ' . $this->booking->user->fullname . '.')
+                ->line('Booking Details:')
+                ->line('User: ' . $this->booking->user->fullname)
+                ->line('Email: ' . $this->booking->user->email)
+                ->line('Service: ' . $this->booking->service->service_name)
+                ->line('Date: ' . $this->booking->book_date)
+                ->line('Please review the booking and take the necessary actions.')
+                ->line('Thank you for using our application!');
+}
+
 
     /**
      * Get the array representation of the notification.
@@ -56,8 +64,8 @@ class EmailNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'service' => $this->project->service->service_name,
-            'user' => $this->project->user->username,
+            'service' => $this->booking->service->service_name,
+            'user' => $this->booking->user->username,
             'message' => 'menunggu konfirmasi'
         ];
     }
