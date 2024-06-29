@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'twilio-notification-channel' => [
+        'accountSid' => env('TWILIO_AUTH_SID'),
+        'authToken' => env('TWILIO_AUTH_TOKEN'),
+        'username' => env('TWILIO_USERNAME'),
+        'password' => env('TWILIO_PASSWORD'),
+        'number' => env('TWILIO_NUMBER'),
+    ],
 ];

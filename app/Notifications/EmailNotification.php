@@ -2,11 +2,12 @@
 
 namespace App\Notifications;
 
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Twilio\Twilio;
+use NotificationChannels\Twilio\TwilioChannel;
+use NotificationChannels\Twilio\TwilioSmsMessage;
 
 class EmailNotification extends Notification
 {
@@ -31,7 +32,7 @@ class EmailNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database', TwilioChannel::class];
     }
 
     /**
@@ -41,18 +42,18 @@ class EmailNotification extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-{
-    return (new MailMessage)
-                ->subject('New Booking Created')
-                ->line('A new booking has been created by ' . $this->booking->user->fullname . '.')
-                ->line('Booking Details:')
-                ->line('User: ' . $this->booking->user->fullname)
-                ->line('Email: ' . $this->booking->user->email)
-                ->line('Service: ' . $this->booking->service->service_name)
-                ->line('Date: ' . $this->booking->book_date)
-                ->line('Please review the booking and take the necessary actions.')
-                ->line('Thank you for using our application!');
-}
+    {
+        return (new MailMessage)
+                    ->subject('New Booking Created')
+                    ->line('A new booking has been created by ' . $this->booking->user->fullname . '.')
+                    ->line('Booking Details:')
+                    ->line('User: ' . $this->booking->user->fullname)
+                    ->line('Email: ' . $this->booking->user->email)
+                    ->line('Service: ' . $this->booking->service->service_name)
+                    ->line('Date: ' . $this->booking->book_date)
+                    ->line('Please review the booking and take the necessary actions.')
+                    ->line('Thank you for using our application!');
+    }
 
 
     /**
@@ -68,5 +69,14 @@ class EmailNotification extends Notification
             'user' => $this->booking->user->username,
             'message' => 'menunggu konfirmasi'
         ];
+    }
+
+    public function toTwilio($notifiable)
+    {
+        return (new TwilioSmsMessage())
+            ->content('Your booking request has been ' . $this->booking->status . '. ' .
+                      'Service: ' . $this->booking->service->service_name . ', ' .
+                      'Date: ' . $this->booking->book_date . ', ' .
+                      'Thank you for using our application!');
     }
 }
