@@ -72,7 +72,6 @@
                                     <td>{{ $rents->firstItem() + $loop->index }}</td>
                                     <td>{{ $rent->service->service_name }}</td>
                                     <td>{{ $rent->book_date }}</td>
-                                    <td>{{ $rent->description }}</td>
                                     @if ($rent->status == 'Accept')
                                     <td class="badge badge-success mt-2">{{ $rent->status }}</td>
                                     @elseif($rent->status == 'Reject')
@@ -86,6 +85,7 @@
                             </table>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center">{{ $rents->links() }}</div>
                 </div>
             </div>
         </div>
