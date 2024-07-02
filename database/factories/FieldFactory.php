@@ -14,7 +14,8 @@ class FieldFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'field_name' => 'Bidang '.mt_rand(1, 20),
+            'field_description' => $this->faker->word(),
         ];
     }
 }
