@@ -32,7 +32,7 @@ class EmailNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database', TwilioChannel::class];
+        return ['mail', 'database'];
     }
 
     /**
@@ -69,14 +69,5 @@ class EmailNotification extends Notification
             'user' => $this->booking->user->username,
             'message' => 'menunggu konfirmasi'
         ];
-    }
-
-    public function toTwilio($notifiable)
-    {
-        return (new TwilioSmsMessage())
-            ->content('Your booking request has been ' . $this->booking->status . '. ' .
-                      'Service: ' . $this->booking->service->service_name . ', ' .
-                      'Date: ' . $this->booking->book_date . ', ' .
-                      'Thank you for using our application!');
     }
 }

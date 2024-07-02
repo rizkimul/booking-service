@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c49c7bae61fd6bd323b3d77074aa888",
+    "content-hash": "4153ca8607636f64cab8d11b8b0d11a4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2495,6 +2495,53 @@
             "time": "2024-04-12T20:52:51+00:00"
         },
         {
+            "name": "nasution/zenziva",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mul14/zenziva.php.git",
+                "reference": "71b1cfd461302f6c735239ca37123f80d7b3fbf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mul14/zenziva.php/zipball/71b1cfd461302f6c735239ca37123f80d7b3fbf0",
+                "reference": "71b1cfd461302f6c735239ca37123f80d7b3fbf0",
+                "shasum": ""
+            },
+            "require": {
+                "rmccue/requests": "~1.7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nasution\\Zenziva\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mulia Arifandi Nasution",
+                    "email": "mul14.net@gmail.com",
+                    "homepage": "http://mul14.net"
+                }
+            ],
+            "description": "Zenziva - Indonesia Online SMS Gateway",
+            "keywords": [
+                "sms",
+                "voice-message",
+                "whatsapp",
+                "zenziva"
+            ],
+            "support": {
+                "issues": "https://github.com/mul14/zenziva.php/issues",
+                "source": "https://github.com/mul14/zenziva.php/tree/v2.1.0"
+            },
+            "time": "2020-11-06T00:49:25+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "2.72.5",
             "source": {
@@ -3870,6 +3917,59 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "rmccue/requests",
+            "version": "v1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rmccue/Requests.git",
+                "reference": "87932f52ffad70504d93f04f15690cf16a089546"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rmccue/Requests/zipball/87932f52ffad70504d93f04f15690cf16a089546",
+                "reference": "87932f52ffad70504d93f04f15690cf16a089546",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "requests/test-server": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Requests": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan McCue",
+                    "homepage": "http://ryanmccue.info"
+                }
+            ],
+            "description": "A HTTP library written in PHP, for human beings.",
+            "homepage": "http://github.com/rmccue/Requests",
+            "keywords": [
+                "curl",
+                "fsockopen",
+                "http",
+                "idna",
+                "ipv6",
+                "iri",
+                "sockets"
+            ],
+            "support": {
+                "issues": "https://github.com/rmccue/Requests/issues",
+                "source": "https://github.com/rmccue/Requests/tree/master"
+            },
+            "time": "2016-10-13T00:11:37+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",

@@ -9,6 +9,7 @@ use App\Notifications\EmailNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Nasution\Zenziva\Zenziva;
 
 class BookingController extends Controller
 {
@@ -103,6 +104,31 @@ class BookingController extends Controller
         $data->status = $request->input('status');
         $data->keterangan = $request->input('message');
         $data->save();
+        $endpoint = "https://console.zenziva.net/wareguler/api/sendWA/";
+
+        $client = new \GuzzleHttp\Client();
+
+        $userkey = env('ZENZIVA_USERKEY');
+
+        $passkey = env('ZENZIVA_PASSKEY');
+
+        $pesan = 'Hallo '.$user->username.' booking pelayanan anda sudah masuk dengan status '.$request->input('status');
+
+        $client->request('POST', $endpoint, [
+
+        'form_params' => [
+
+        'userkey' => $userkey,
+
+        'passkey' => $passkey,
+
+        'to' => $user->phone_number,
+
+        'message' => $pesan
+
+        ]
+
+        ]);
         Notification::send($user, new EmailNotification($data));
         return response()->json(
             [
