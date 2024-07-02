@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'instansi' => 'Humas',
             'fullname' => 'Admin',
             'email' => 'admins@yapmail.com',
-            'phone_number' => '081237017320',
+            'phone_number' => '+6285179913194',
             'remember_token' => Str::random(10),
         ]);
         \App\Models\User::create([
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'instansi' => 'Humas',
             'fullname' => 'SuperAdmin',
             'email' => 'supersadmins@yapmail.com',
-            'phone_number' => '081237017320',
+            'phone_number' => '+6285179913194',
             'remember_token' => Str::random(10),
         ]);
         \App\Models\User::create([
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'instansi' => 'Warga',
             'fullname' => 'User',
             'email' => 'users@yapmail.com',
-            'phone_number' => '081237017320',
+            'phone_number' => '+6285179913194',
             'remember_token' => Str::random(10),
         ]);
     }
