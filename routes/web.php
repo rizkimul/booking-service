@@ -38,21 +38,13 @@ use GuzzleHttp\Middleware;
 
 Route::resource('/', DashboardController::class);
 
-Route::resource('gedung', GedungController::class)->middleware('mix');
-
 Route::resource('field', FieldController::class)->middleware('mix');
 
-Route::resource('roomtype', RoomTypeController::class)->middleware('mix');
-
 Route::resource('serviceType', ServiceTypeController::class)->middleware('mix');
-
-Route::resource('ruangan', RoomController::class)->middleware('mix');
 
 Route::resource('services', ServiceController::class)->middleware('mix');
 
 Route::resource('user', UserController::class)->middleware('mix');
-
-Route::resource('rental', DashboardRentalController::class)->middleware('mix');
 
 Route::resource('booking', BookingController::class)->middleware('mix');
 Route::resource('books', UserBookingController::class)->middleware('user');
