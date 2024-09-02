@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Carbon\Carbon;
 use App\Models\Rental;
 use Illuminate\Http\Request;
@@ -13,10 +14,10 @@ class LaporanController extends Controller
 {
     public function read()
     {
-        $bulan = Rental::where('status', 'Accept')->get()->groupBy(function($bulan){
+        $bulan = Booking::where('status', 'Accept')->get()->groupBy(function($bulan){
             return Carbon::parse($bulan->start)->translatedFormat('F');
         });
-        $bulanNum = Rental::where('status', 'Accept')->get()->groupBy(function($bulan){
+        $bulanNum = Booking::where('status', 'Accept')->get()->groupBy(function($bulan){
             return Carbon::parse($bulan->start)->translatedFormat('m');
         });
         $getMonths=[];
@@ -28,7 +29,7 @@ class LaporanController extends Controller
             $getMonthNum[]=$i;
         }
 
-        $year = Rental::where('status', 'Accept')->get()->groupBy(function($year){
+        $year = Booking::where('status', 'Accept')->get()->groupBy(function($year){
             return Carbon::parse($year->start)->translatedFormat('Y');
         });
         $getYears=[];
@@ -39,7 +40,7 @@ class LaporanController extends Controller
 
         return view('laporan.laporan', [
             'title' => 'Laporan',
-            'rents' => Rental::with(['building', 'room'])->paginate(5),
+            'rents' => Booking::with(['field', 'service'])->paginate(5),
             'getMonths' => $getMonths,
             'getMonthsNum' => $getMonthNum,
             'getYears' => $getYears
@@ -60,14 +61,14 @@ class LaporanController extends Controller
 
         if ($tahun == "Pilih Tahun" && $bulan == "Pilih Bulan") {
 
-            $jumahRental = Rental::where('status', 'Accept')->whereDate('start', $hari)->count();
+            $jumahRental = Booking::where('status', 'Accept')->whereDate('book_date', $hari)->count();
             $getdate = Carbon::parse($hari)->translatedFormat('d F Y');
     
-            $ruanganRental = Rental::where('status', 'Accept')->whereDate('start', $hari)->with('room')->get()->groupBy(function($ruanganRental){
-                return $ruanganRental->room->roomname;
+            $ruanganRental = Booking::where('status', 'Accept')->whereDate('book_date', $hari)->with('service')->get()->groupBy(function($ruanganRental){
+                return $ruanganRental->service->service_name;
             });
     
-            $userRental = Rental::where('status', 'Accept')->whereDate('start', $hari)->with('user')->get()->groupBy(function($userRental){
+            $userRental = Booking::where('status', 'Accept')->whereDate('book_date', $hari)->with('user')->get()->groupBy(function($userRental){
                 return $userRental->user->instansi;
             });
     
@@ -89,14 +90,14 @@ class LaporanController extends Controller
 
         elseif(empty($hari) && $bulan == "Pilih Bulan"){
 
-            $jumahRental = Rental::where('status', 'Accept')->whereYear('start', $tahun)->count();
+            $jumahRental = Booking::where('status', 'Accept')->whereYear('book_date', $tahun)->count();
             $getdate = $tahun;
     
-            $ruanganRental = Rental::where('status', 'Accept')->whereYear('start', $tahun)->with('room')->get()->groupBy(function($ruanganRental){
-                return $ruanganRental->room->roomname;
+            $ruanganRental = Booking::where('status', 'Accept')->whereYear('book_date', $tahun)->with('service')->get()->groupBy(function($ruanganRental){
+                return $ruanganRental->service->service_name;
             });
     
-            $userRental = Rental::where('status', 'Accept')->whereYear('start', $tahun)->with('user')->get()->groupBy(function($userRental){
+            $userRental = Booking::where('status', 'Accept')->whereYear('book_date', $tahun)->with('user')->get()->groupBy(function($userRental){
                 return $userRental->user->instansi;
             });
     
@@ -117,14 +118,14 @@ class LaporanController extends Controller
 
         elseif(empty($hari)){
 
-            $jumahRental = Rental::where('status', 'Accept')->whereMonth('start', $bulan)->whereYear('start', $tahun)->count();
+            $jumahRental = Booking::where('status', 'Accept')->whereMonth('book_date', $bulan)->whereYear('start', $tahun)->count();
             $getdate = Carbon::createFromFormat('!m', $bulan)->translatedFormat('F ').$tahun;
     
-            $ruanganRental = Rental::where('status', 'Accept')->whereMonth('start', $bulan)->whereYear('start', $tahun)->with('room')->get()->groupBy(function($ruanganRental){
-                return $ruanganRental->room->roomname;
+            $ruanganRental = Booking::where('status', 'Accept')->whereMonth('book_date', $bulan)->whereYear('start', $tahun)->with('service')->get()->groupBy(function($ruanganRental){
+                return $ruanganRental->service->service_name;
             });
     
-            $userRental = Rental::where('status', 'Accept')->whereMonth('start', $bulan)->whereYear('start', $tahun)->with('user')->get()->groupBy(function($userRental){
+            $userRental = Booking::where('status', 'Accept')->whereMonth('book_date', $bulan)->whereYear('start', $tahun)->with('user')->get()->groupBy(function($userRental){
                 return $userRental->user->instansi;
             });
     
@@ -142,20 +143,6 @@ class LaporanController extends Controller
                 $jumlahRuangan[]=count($value);
             }
         }
-
-        // $view = view('laporan.print-pdf', [
-        //     'jumahrentalbulan' => $jumahRental,
-        //     'user' => $namaUser,
-        //     'jumlahpinjam' => $jumlahPinjam,
-        //     'ruangan' => $namaRuangan,
-        //     'jumlahruangan' => $jumlahRuangan,
-        // ]);
-        // $html = $view->render();
-
-        // $pdf = PDF::loadHTML($html);
-        // $filename = base_path('data.pdf');
-        // $pdf->save($filename);
-        // $sheet = $pdf->setPaper('a4', 'landscape');
         $pdf = PDF::loadView('laporan.print-pdf', [
             'jumahrentalbulan' => $jumahRental,
             'user' => $namaUser,
@@ -168,16 +155,6 @@ class LaporanController extends Controller
         $fileName =  'data.pdf' ;
         $pdf->save($path . '/' . $fileName);
         $pdf = public_path('pdf/'.$fileName);
-        // return view('laporan.print-pdf',[
-        //     'title' => 'Laporan',
-        //     'jumahrentalbulan' => $jumahRental,
-        //     'user' => $namaUser,
-        //     'jumlahpinjam' => $jumlahPinjam,
-        //     'ruangan' => $namaRuangan,
-        //     'jumlahruangan' => $jumlahRuangan,
-        //     'getdate' => $getdate
-        // ]);
-        // Session::flash('download.in.the.next.request', 'filetodownload.pdf');
         
         return response()->download($pdf);
     }

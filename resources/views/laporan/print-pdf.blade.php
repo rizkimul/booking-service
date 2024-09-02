@@ -71,8 +71,8 @@
         <thead align="left">
         <tr>
             <th>No</th>
-            <th>Nama Ruangan</th>
-            <th>Jumlah Pinjaman</th>
+            <th>Nama Pelayanan</th>
+            <th>Jumlah Melayani</th>
         </tr>
         </thead>
         <tbody>
@@ -88,13 +88,13 @@
     </table>
 </div>
 <div class="invoice">
-    <h3>Instansi Yang Meminjam</h3>
+    <h3>Instansi Yang Melayani</h3>
     <table width="100%" align="left">
         <thead align="left">
         <tr>
             <th>No</th>
             <th>Nama Instansi</th>
-            <th>Jumlah Pinjaman</th>
+            <th>Jumlah Melayani</th>
         </tr>
         </thead>
         <tbody>
