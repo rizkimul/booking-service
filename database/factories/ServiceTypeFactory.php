@@ -14,8 +14,6 @@ class ServiceTypeFactory extends Factory
     public function definition()
     {
         return [
-            'service_type_name' => 'Jenis Pelayanan '.mt_rand(1, 20),
-            'service_type_description' => $this->faker->word(),
         ];
     }
 }

@@ -50,15 +50,7 @@
         <table width="100%">
             <tr>
                 <td align="left" style="width: 40%;">
-                    <h1>Laporan Peminjaman Ruangan</h1>
-                </td>
-                <td align="right" style="width: 40%;">
-                    <h3>Universitas Langlangbuana</h3>
-                    <pre>
-                        Jl. Karapitan No.116, Cikawao,
-                        Kec. Lengkong, Kota Bandung,
-                        Jawa Barat 40261
-                    </pre>
+                    <h1>Laporan Pelayanan Booking</h1>
                 </td>
             </tr>
     
@@ -69,12 +61,12 @@
 <br/>
 
 <div class="invoice">
-    <h3>Jumlah Ruangan Yang Dipinjam</h3>
+    <h3>Jumlah Melayani Pelayanan</h3>
     <h3>{{ $getdate }} : {{ $jumahrentalbulan }}</h3>
 </div>
 
 <div class="invoice">
-    <h3>Ruangan Yang Dipinjam</h3>
+    <h3>Jumlah Pelayanan Yang Di Booking</h3>
     <table width="100%" align="left">
         <thead align="left">
         <tr>
@@ -122,10 +114,10 @@
     <table width="100%">
         <tr>
             <td align="left" style="width: 50%;">
-                &copy; {{ date('Y') }} Universitas Langlangbuana - All rights reserved.
+                &copy; {{ date('Y') }} All rights reserved.
             </td>
             <td align="right" style="width: 50%;">
-                PinjamRuang 2018
+                Booking Service
             </td>
         </tr>
 

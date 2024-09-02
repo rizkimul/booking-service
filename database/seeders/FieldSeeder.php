@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Field;
 
 class FieldSeeder extends Seeder
 {
@@ -13,6 +14,5 @@ class FieldSeeder extends Seeder
      */
     public function run()
     {
-        //
     }
 }

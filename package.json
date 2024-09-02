@@ -19,6 +19,7 @@
     "dependencies": {
         "bootstrap-social": "^5.1.1",
         "datatables.net": "^1.11.4",
+        "firebase": "^10.13.0",
         "fullcalendar": "^5.10.1",
         "jquery": "^3.6.0",
         "jquery-slim": "^3.0.0",
