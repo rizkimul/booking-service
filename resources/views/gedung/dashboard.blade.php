@@ -33,7 +33,7 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Total Gedung</h4>
+                <h4>Total Bidang Pelayanan</h4>
               </div>
               <div class="card-body">
                 {{ $field }}
@@ -48,7 +48,7 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Total Ruangan</h4>
+                <h4>Total Pelayanan</h4>
               </div>
               <div class="card-body">
                 {{ $services }}
@@ -63,7 +63,7 @@
             </div>
             <div class="card-wrap">
               <div class="card-header">
-                <h4>Total Ruangan Yang Dipinjam</h4>
+                <h4>Total Pelayanan Yang Booking</h4>
               </div>
               <div class="card-body">
                 {{ $booking }}
@@ -187,7 +187,7 @@
         const data = {
           labels: {!! json_encode($months) !!},
           datasets: [{
-            label: 'Banyak Ruangan Yang Dipinjam',
+            label: 'Banyak Pelayanan Yang Dibooking',
             backgroundColor: getRandomColor(),
             borderColor: 'rgb(255, 99, 132)',
             data: {!! json_encode($monthCount) !!},
@@ -211,7 +211,7 @@
         const data2 = {
           labels: {!! json_encode($nama) !!},
           datasets: [{
-            label: 'Ruangan yang sering dipinjam',
+            label: 'Pelayanan Yang Sering Dibooking',
             backgroundColor: getRandomColor(),
             borderColor: 'rgb(255, 99, 132)',
             data: {!! json_encode($jumlah) !!},
@@ -235,7 +235,7 @@
         const data3 = {
           labels: {!! json_encode($namaUser) !!},
           datasets: [{
-            label: 'Instansi yang sering meminjam',
+            label: 'Instansi Yang Sering Melayani',
             backgroundColor: getRandomColor(),
             borderColor: 'rgb(255, 99, 132)',
             data: {!! json_encode($jumlahPinjam) !!},
