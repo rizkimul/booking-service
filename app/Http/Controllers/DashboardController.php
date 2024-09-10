@@ -49,7 +49,7 @@ class DashboardController extends Controller
         }
         $tanggal = Booking::select('book_date', 'description')->where('status', 'Accept')->get();
         
-        return view('gedung.dashboard', [
+        return view('dashboard.dashboard', [
             'title' => 'Dashboard',
             'user' => User::count(),
             'field' => Field::count(),
