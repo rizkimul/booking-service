@@ -25,12 +25,12 @@
         <form action="/login" method="POST">
             @csrf
             <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
-                    name="username" tabindex="1" placeholder="username" required autofocus>
-                @error('username')
+                <label for="nik">NIK</label>
+                <input id="nik" type="text" class="form-control @error('nik') is-invalid @enderror"
+                    name="nik" tabindex="1" placeholder="nik" required autofocus>
+                @error('nik')
                 <div class="invalid-feedback">
-                    {{ 'Please fill in your username' }}
+                    {{ 'Please fill in your nik' }}
                 </div>
                 @enderror
             </div>
@@ -53,7 +53,7 @@
             </div>
         </form>
         <div class="mt-5 text-muted text-center">
-            Not registered? <a href="/register">Register Now</a>
+            Belum Memiliki KTP? <a href="/register">Daftar Sekarang</a>
         </div>
 
     </div>

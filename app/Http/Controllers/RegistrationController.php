@@ -60,6 +60,7 @@ class RegistrationController extends Controller
         $user->password = $password;
         $user->usertype = 'User';
         $user->instansi = 'Warga';
+        $user->nik = $request->input('nik');
         $user->save();
         // return redirect('/gedung')->with('statusAdd', 'Added data sucessfully !');
 

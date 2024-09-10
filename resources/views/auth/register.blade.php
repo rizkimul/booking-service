@@ -40,6 +40,16 @@
         <form action="/register" method="POST">
             @csrf
             <div class="form-group">
+                <label for="nik">NIK</label>
+                <input id="nik" type="text" class="form-control @error('nik') is-invalid @enderror"
+                    name="nik" tabindex="1" placeholder="NIK" required autofocus>
+                @error('nik')
+                <div class="invalid-feedback">
+                    {{ 'Please fill in your nik' }}
+                </div>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
                     name="username" tabindex="1" placeholder="Username" required autofocus>
@@ -98,7 +108,7 @@
             </div>
         </form>
         <div class="mt-5 text-muted text-center">
-            Already register? <a href="/login">Login</a>
+            Sudah Memiliki KTP? <a href="/login">Login</a>
         </div>
 
     </div>

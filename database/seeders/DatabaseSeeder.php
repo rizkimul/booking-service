@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'instansi' => 'Humas',
             'fullname' => 'Admin',
             'email' => 'admins@yapmail.com',
+            'nik' => '1234567890',
             'phone_number' => '+6285179913194',
             'remember_token' => Str::random(10),
         ]);
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'fullname' => 'SuperAdmin',
             'email' => 'supersadmins@yapmail.com',
             'phone_number' => '+6285179913194',
+            'nik' => '11111',
             'remember_token' => Str::random(10),
         ]);
         \App\Models\User::create([
@@ -45,6 +47,7 @@ class DatabaseSeeder extends Seeder
             'fullname' => 'User',
             'email' => 'users@yapmail.com',
             'phone_number' => '+6285179913194',
+            'nik' => '22222',
             'remember_token' => Str::random(10),
         ]);
 

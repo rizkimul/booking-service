@@ -20,7 +20,7 @@ class LoginController extends Controller
     public function auth(Request $request)
     {
         $credentials = $request -> validate([
-            'username' => 'required',
+            'nik' => 'required',
             'password' => 'required'
         ]);
 
