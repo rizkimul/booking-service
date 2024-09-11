@@ -19,10 +19,11 @@ class LoginController extends Controller
 
     public function auth(Request $request)
     {
-        $credentials = $request -> validate([
-            'nik' => 'required',
-            'password' => 'required'
-        ]);
+        $firstCredentialValue = $request->input('usernameOrNIK');
+
+        $firstCredentialValueType = filter_var(is_numeric($firstCredentialValue)) ? 'nik' : 'username';
+
+        $credentials = [$firstCredentialValueType => $firstCredentialValue, 'password' => $request->input('password')];
 
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -32,7 +33,6 @@ class LoginController extends Controller
 
         return back()->with('LoginError', 'Login failed!');
     }
-
 
     public function logout(Request $request)
     {

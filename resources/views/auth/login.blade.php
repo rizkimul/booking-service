@@ -25,12 +25,12 @@
         <form action="/login" method="POST">
             @csrf
             <div class="form-group">
-                <label for="nik">NIK</label>
-                <input id="nik" type="text" class="form-control @error('nik') is-invalid @enderror"
-                    name="nik" tabindex="1" placeholder="nik" required autofocus>
-                @error('nik')
+                <label for="usernameOrNIK">Username/NIK</label>
+                <input id="usernameOrNIK" type="text" class="form-control @error('usernameOrNIK') is-invalid @enderror"
+                    name="usernameOrNIK" tabindex="1" placeholder="username or nik" required autofocus>
+                @error('usernameOrNIK')
                 <div class="invalid-feedback">
-                    {{ 'Please fill in your nik' }}
+                    {{ 'Please fill in your username/nik' }}
                 </div>
                 @enderror
             </div>
