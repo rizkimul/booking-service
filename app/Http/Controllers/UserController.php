@@ -57,7 +57,7 @@ class UserController extends Controller
         $data->usertype = $request->usertype;
         $data->instansi = $request->instansi;
         $data->email = $request->email;
-        $data->phone_number = $request->phone_number;
+        $data->phone_number = $request->phoneNumber;
         $data->save();
         return redirect('/user')->with('statusUpdate', 'Update data sucessfully');
     }
